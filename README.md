@@ -1,6 +1,9 @@
 # irrigation-raspberry
-You can change the parameters in irr.py to fit with your plants. At the moment it will save data on your plants soil moisture as .csv and in a .pdf diagram.
-You can use callibration.py and motor.py to test your components.
+You can change the parameters in irr.py to fit with your plants. At the moment it will save data on your plants soil moisture as .csv and in a .pdf diagram. For "minval" use callibration in your irrigated soil.
+
+You can use humidity.py and motor.py to test your components.
+0 means hight moisture (water is around 100), 1024 is air/dry.
+
 
 ## Components
 
