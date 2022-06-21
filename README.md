@@ -23,6 +23,12 @@ BC337 Transistor
 ## Circuit
 ![circuit-2](https://user-images.githubusercontent.com/20001372/174871070-a0997e31-8145-41c6-a671-d4eb0c4a8c97.png)
 
+## dependencies
+spidev, os, time
+from gpiozero: LED
+numpy, matplotlib.pyplot, csv
+
+
 ## Outstanding problems
 - Corrotion of ground sensor could probably be fixed by using it with another transitor to turn it of while not in use. Until then, callibration before every measurement works just fine.
 
