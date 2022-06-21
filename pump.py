@@ -6,5 +6,3 @@ power = LED(16)
 power.on()
 sleep(5)
 power.off()
-    
-    
