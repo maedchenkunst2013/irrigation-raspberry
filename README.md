@@ -30,6 +30,6 @@ numpy, matplotlib.pyplot, csv
 
 
 ## Outstanding problems
-- Corrotion of ground sensor could probably be fixed by using it with another transitor to turn it of while not in use. Until then, callibration before every measurement works just fine.
+- Corrotion of ground sensor -> could probably be fixed by using it with another transitor to turn it of while not in use. Until then, callibration before every measurement works just fine.
 
 - no live data (in diagrams) and limited runtime -> could be solved by reworking the main code
