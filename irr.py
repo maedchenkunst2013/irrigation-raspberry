@@ -8,32 +8,32 @@ import matplotlib.pyplot as plt
 import csv
 
 
-power = LED(16) #PIN für Transitoransteuerung zum ein/ausschalten des Motors (workaround über gpiozero)
+power = LED(16) #PIN for Transitor to turn on/off your pump (workaround via gpiozero)o)
 spi = spidev.SpiDev()
 spi.open(0,0)
 spi.max_speed_hz=1000000
-start_time = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime()) # der bug mit der zeitüber die settings mit internet einstellen!!
+start_time = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime())
 
 
 fig, ax = plt.subplots()
 
-# Die Daten hier kann man anpassen:
+# You can change these parameters:
 delay = 1800  #in sek
-minval = 610  # vorher durch cal festlegen
+minval = 610  # determine by calibration
 maxrep = 50 
 # ------------
 
 
-daten = np.zeros((maxrep, 1))
+dataSen = np.zeros((maxrep, 1))
 
 
-# für den Motor:
+# for the pump
 def motor_on(waittime):
     power.on()
     time.sleep(waittime)
     power.off()
  
-# auslesen der daten
+# reading data
 def readChannel(channel):
     val = spi.xfer2([1,(8+channel)<<4,0])
     data = ((val[1]&3) << 8) + val[2]
@@ -46,18 +46,18 @@ while i < maxrep:
     ts = i
     val = readChannel(0)
     print(val)
-    daten[i, 0] = val
+    dataSen[i, 0] = val
     
     i = i+1
     
-    if (val > minval): ##motor an?
+    if (val > minval): ##pump on?
         motor_on(5) 
     time.sleep(delay)
     
-print(daten) # zur kontrolle während es läuft
+print(dataSen) # for added control after running
 
-# für ein Diagram zur Auswertung
-ax.plot(daten)
+# Diagram for analysis
+ax.plot(dataSen)
 ax.set_title(start_time)
 
 fig.show()
@@ -65,10 +65,10 @@ fig.savefig(start_time + ".pdf", )
 #-----------------------
 
 
-# daten in csv
+# data in csv
 with open(start_time+'.csv', 'w') as file:
     writer = csv.writer(file)
-    writer.writerow(daten)
+    writer.writerow(dataSen)     #maybe change to .writerows()
 
 #------------
     
